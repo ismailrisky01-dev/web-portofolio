@@ -103,21 +103,22 @@
             <div id="projects">
                 <h2 class="font-headline font-bold text-3xl md:text-4xl uppercase text-on-surface" style="margin-bottom: 5rem;">RECENT</h2>
                 <div class="flex flex-col">
-                    <a href="#" class="block border-t border-gray-300 hover:bg-surface-container-lowest transition-colors group" style="padding: 1.25rem 0;">
-                        <h3 class="font-headline font-medium text-[15px] leading-snug text-on-surface group-hover:text-primary transition-colors pr-2">Behind the brand: Statsig's visual evolution in 2023</h3>
-                    </a>
-                    <a href="#" class="block border-t border-gray-300 hover:bg-surface-container-lowest transition-colors group" style="padding: 1.25rem 0;">
-                        <h3 class="font-headline font-medium text-[15px] leading-snug text-on-surface group-hover:text-primary transition-colors pr-2">Why experimentation (A/B testing) is a vital tool for designers</h3>
-                    </a>
-                    <a href="#" class="block border-t border-gray-300 hover:bg-surface-container-lowest transition-colors group" style="padding: 1.25rem 0;">
-                        <h3 class="font-headline font-medium text-[15px] leading-snug text-on-surface group-hover:text-primary transition-colors pr-2">Statsig Experimentation Product Raises $43 Million Series B</h3>
-                    </a>
-                    <a href="#" class="block border-t border-gray-300 hover:bg-surface-container-lowest transition-colors group" style="padding: 1.25rem 0;">
-                        <h3 class="font-headline font-medium text-[15px] leading-snug text-on-surface group-hover:text-primary transition-colors pr-2">The Importance of Design in B2B SaaS</h3>
-                    </a>
-                    <a href="#" class="block border-t border-b border-gray-300 hover:bg-surface-container-lowest transition-colors group" style="padding: 1.25rem 0;">
-                        <h3 class="font-headline font-medium text-[15px] leading-snug text-on-surface group-hover:text-primary transition-colors pr-2">Establishing a design system at an early startup and why it's important</h3>
-                    </a>
+                    @foreach($projects as $index => $project)
+                        <a href="{{ $project['link'] }}" target="_blank" class="block border-t {{ $loop->last ? 'border-b' : '' }} border-gray-300 hover:bg-surface-container-lowest transition-colors group" style="padding: 1.25rem 0;">
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="flex-1">
+                                    <h3 class="font-headline font-bold text-[15px] leading-snug text-on-surface group-hover:text-primary transition-colors pr-2">{{ $project['title'] }}</h3>
+                                    <p class="font-body text-on-surface-variant text-sm mt-2 leading-relaxed">{{ $project['description'] }}</p>
+                                </div>
+                                <span class="material-symbols-outlined text-on-surface-variant/50 group-hover:text-primary transition-colors mt-1 transform group-hover:translate-x-1 group-hover:-translate-y-1">arrow_outward</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                @foreach($project['tags'] as $tag)
+                                    <span class="text-xs font-medium px-2 py-1 bg-surface-container-high text-on-surface-variant rounded-md">{{ $tag }}</span>
+                                @endforeach
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
