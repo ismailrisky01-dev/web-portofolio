@@ -2,6 +2,9 @@
 
 namespace App\Actions;
 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+
 /**
  * Class GetPortfolioDataAction
  * 
@@ -45,28 +48,104 @@ class GetPortfolioDataAction
                     'link' => '#',
                 ],
             ],
-            'photos' => [
-                [
-                    'title' => 'Neon Nights',
-                    'category' => 'Urban',
-                    'url' => 'https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=800&auto=format&fit=crop',
-                ],
-                [
-                    'title' => 'Mountain Peak',
-                    'category' => 'Landscape',
-                    'url' => 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop',
-                ],
-                [
-                    'title' => 'Morning Portrait',
-                    'category' => 'Portrait',
-                    'url' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop',
-                ],
-                [
-                    'title' => 'City Scape',
-                    'category' => 'Urban',
-                    'url' => 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=800&auto=format&fit=crop',
-                ],
-            ]
+            'photos' => $this->fetchPexelsPhotos(),
+        ];
+    }
+
+    /**
+     * Mengambil foto dari Pexels API.
+     * Menggunakan Collection ID jika tersedia, jika tidak gunakan curated photos.
+     * Hasil di-cache selama 1 jam untuk menghemat API quota.
+     *
+     * @return array<int, array{title: string, category: string, url: string, pexels_url: string, photographer: string}>
+     */
+    private function fetchPexelsPhotos(): array
+    {
+        $apiKey = env('PEXELS_API_KEY');
+        $collectionId = env('PEXELS_COLLECTION_ID');
+
+        if (empty($apiKey)) {
+            return $this->fallbackPhotos();
+        }
+
+        // Cache selama 1 jam agar tidak boros API quota
+        $cacheKey = 'pexels_photos_' . ($collectionId ?: 'curated');
+
+        return Cache::remember($cacheKey, 3600, function () use ($apiKey, $collectionId) {
+            try {
+                if (!empty($collectionId)) {
+                    // Ambil dari Collection milik user
+                    $response = Http::withHeaders([
+                        'Authorization' => $apiKey,
+                    ])->get("https://api.pexels.com/v1/collections/{$collectionId}", [
+                        'type' => 'photos',
+                        'per_page' => 8,
+                    ]);
+                } else {
+                    // Fallback: ambil curated photos
+                    $response = Http::withHeaders([
+                        'Authorization' => $apiKey,
+                    ])->get('https://api.pexels.com/v1/curated', [
+                        'per_page' => 8,
+                    ]);
+                }
+
+                if ($response->failed()) {
+                    return $this->fallbackPhotos();
+                }
+
+                $data = $response->json();
+                $photos = $data['media'] ?? $data['photos'] ?? [];
+
+                return collect($photos)->map(function ($photo) {
+                    return [
+                        'title' => $photo['alt'] ?? 'Untitled',
+                        'category' => 'Photography',
+                        'url' => $photo['src']['large'] ?? $photo['src']['medium'] ?? '',
+                        'pexels_url' => $photo['url'] ?? '#',
+                        'photographer' => $photo['photographer'] ?? '',
+                    ];
+                })->toArray();
+            } catch (\Exception $e) {
+                return $this->fallbackPhotos();
+            }
+        });
+    }
+
+    /**
+     * Foto fallback jika Pexels API tidak tersedia.
+     */
+    private function fallbackPhotos(): array
+    {
+        return [
+            [
+                'title' => 'Neon Nights',
+                'category' => 'Urban',
+                'url' => 'https://images.unsplash.com/photo-1542451313056-b7c8e626645f?q=80&w=800&auto=format&fit=crop',
+                'pexels_url' => '#',
+                'photographer' => 'Ismail Risky Rahmansyah',
+            ],
+            [
+                'title' => 'Mountain Peak',
+                'category' => 'Landscape',
+                'url' => 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop',
+                'pexels_url' => '#',
+                'photographer' => 'Ismail Risky Rahmansyah',
+            ],
+            [
+                'title' => 'Morning Portrait',
+                'category' => 'Portrait',
+                'url' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop',
+                'pexels_url' => '#',
+                'photographer' => 'Ismail Risky Rahmansyah',
+            ],
+            [
+                'title' => 'City Scape',
+                'category' => 'Urban',
+                'url' => 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=800&auto=format&fit=crop',
+                'pexels_url' => '#',
+                'photographer' => 'Ismail Risky Rahmansyah',
+            ],
         ];
     }
 }

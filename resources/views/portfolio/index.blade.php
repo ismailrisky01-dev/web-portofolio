@@ -140,24 +140,24 @@
                 <!-- Image on the Left -->
                 <div class="flex-1 w-full">
                     <div class="transform transition-transform hover:-translate-y-2 duration-500">
-                        <img alt="Statsig UI Collage" class="w-full h-auto rounded-xl shadow-[0_32px_64px_rgba(28,27,27,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYxLD83h75HFfWkt-4sdtf5DPK6sccOpD-8AaVUR8nXUhAuy6aae9o0rzqPro2yfqZKUsBv9MCi-nuALn4ek5J1zkB0QLZx8prg8K_VN1dja9_0s-FLzXY3pWlNIImJq5hF90L2-taum2xv0cxLWZ5qVGtXgSpyS_YX4sPz7_-RiP8oLocDmmJR7JzLWL0Ute12Whiq4LWV_ecbDzfXd8ZNJwRzU9zXILOXML1GfMbZOX6QdHupR0YIK-YkIJvgdf4yMb60O24H_Q"/>
+                        <img alt="Statsig UI Collage" class="w-full h-auto rounded-xl shadow-[0_32px_64px_rgba(28,27,27,0.08)]" src="{{ asset('images/product.png') }}"/>
                     </div>
                 </div>
                 <!-- Text on the Right -->
                 <div class="flex-1 lg:pl-8">
-                    <h3 class="font-headline font-bold text-3xl md:text-4xl text-on-surface mb-8">STATSIG PRODUCT</h3>
+                    <h3 class="font-headline font-bold text-3xl md:text-4xl text-on-surface mb-8">DIGITAL PRODUCTS</h3>
                     <div class="font-body text-on-surface-variant text-base leading-relaxed space-y-6 mb-8 text-justify">
                         <p>
-                            Statsig is a faithful replica of the growth infrastructure used inside Facebook that allowed it to grow quickly (i.e Gatekeeper, Deltoid, Quick Experiments, Unidash, Scuba). Our mission is to become all-in-one data platform for all product builders and we have three key pillars of our product that supports it: Feature Flagging, Experimentation and Analytics.
+                            Dengan pengalaman lebih dari 4 tahun di dunia pengembangan perangkat lunak, saya telah membangun berbagai produk digital — mulai dari aplikasi mobile Android Native menggunakan Kotlin dan Java, website interaktif dengan Laravel dan React, hingga solusi IoT yang terintegrasi dengan Machine Learning.
                         </p>
                         <p>
-                            For both of our Series-A round back in 2021 and our Series-B round in 2022, we were backed by Sequoia Capital as our lead investor with participation from Madrona Venture Labs, reaching the total funding of $50M+ altogether with a $420M valuation. Some of our notable customers include: OpenAI, Microsoft, Atlassian, Figma, Notion, Cruise, Flipkart and so on. We've surpassed 8 figure in ARR just over 2 years since our company was founded which is a monumental growth.
+                            Setiap produk yang saya kembangkan selalu berfokus pada pengalaman pengguna yang intuitif dan performa yang optimal. Saat ini, saya terus mengeksplorasi pendekatan modern seperti Kotlin Multiplatform dan Flutter untuk menghadirkan aplikasi lintas platform yang efisien, serta memanfaatkan metode "Vibe Coding" dengan AI untuk mempercepat proses pengembangan.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 text-primary font-semibold text-sm">
-                        <a href="#" class="hover:underline underline-offset-4 decoration-2 transition-all">Statsig Raises Series B</a>
+                        <a href="#contact" class="hover:underline underline-offset-4 decoration-2 transition-all">Mari Berkolaborasi</a>
                         <span class="text-on-surface-variant font-normal">|</span>
-                        <a href="#" class="hover:underline underline-offset-4 decoration-2 transition-all">Statsig Raises Series A</a>
+                        <a href="https://github.com/ismailrisky01-dev" target="_blank" class="hover:underline underline-offset-4 decoration-2 transition-all">Lihat di GitHub</a>
                     </div>
                 </div>
             </div>
@@ -174,20 +174,22 @@
                     <p class="font-body text-on-surface-variant text-lg leading-relaxed mb-8">
                         Beyond the screen, I capture the world through my lens. From urban cityscapes to breathtaking mountain peaks.
                     </p>
-                    <a class="inline-flex items-center gap-2 text-primary font-semibold hover:underline underline-offset-4 decoration-2 transition-all" href="#projects">
-                        View More Works
+                    <a class="inline-flex items-center gap-2 text-primary font-semibold hover:underline underline-offset-4 decoration-2 transition-all" href="https://www.pexels.com/@ismail-rahmansyah-33202385/" target="_blank">
+                        View Pexels Profile
                         <span class="material-symbols-outlined">arrow_forward</span>
                     </a>
                 </div>
                 <div class="flex-1 w-full">
                     <div class="bg-surface-container-highest rounded-xl p-8 shadow-[0_32px_64px_rgba(28,27,27,0.04)] transform transition-transform hover:-translate-y-2 duration-500">
-                        <!-- Utilizing Livewire Gallery if exists, otherwise using the placeholder -->
                         @if(isset($photos) && count($photos) > 0)
                            <div class="grid grid-cols-2 gap-4">
                                @foreach(array_slice($photos, 0, 4) as $photo)
-                                   <div class="aspect-square overflow-hidden rounded-lg">
-                                       <img src="{{ $photo['url'] }}" alt="{{ $photo['title'] }}" class="w-full h-full object-cover">
-                                   </div>
+                                   <a href="{{ $photo['pexels_url'] }}" target="_blank" class="aspect-square overflow-hidden rounded-lg group relative block">
+                                       <img src="{{ $photo['url'] }}" alt="{{ $photo['title'] }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                       <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                            <p class="text-white text-xs font-medium truncate">{{ $photo['title'] }}</p>
+                                       </div>
+                                   </a>
                                @endforeach
                            </div>
                         @else

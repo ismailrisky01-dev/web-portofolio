@@ -27,26 +27,27 @@
             ISMAIL R. RAHMANSYAH
         </div>
         <div class="flex flex-col gap-8">
-            <a href="#hero" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-primary relative after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
+            <a href="#hero" title="Home" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-primary relative after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
                 <span class="sr-only">Home</span>
             </a>
-            <a href="#about" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
+            <a href="#about" title="About" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
                 <span class="material-symbols-outlined">person</span>
                 <span class="sr-only">About</span>
             </a>
-            <a href="#experience" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
-                <span class="material-symbols-outlined">work</span>
-                <span class="sr-only">Experience</span>
+            <a href="#featured-project" title="Product" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
+                <span class="material-symbols-outlined">deployed_code</span>
+                <span class="sr-only">Product</span>
             </a>
-            <a href="#projects" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
-                <span class="material-symbols-outlined">grid_view</span>
-                <span class="sr-only">Projects</span>
+            <a href="#photography" title="Gallery" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
+                <span class="material-symbols-outlined">photo_camera</span>
+                <span class="sr-only">Gallery</span>
+            </a>
+            <a href="#contact" title="Contact" class="group flex flex-col items-center justify-center font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px] text-on-background/60 hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
+                <span class="material-symbols-outlined">mail</span>
+                <span class="sr-only">Contact</span>
             </a>
         </div>
-        <button class="mt-auto text-on-background hover:text-primary transition-colors duration-300 active:scale-95 transition-transform duration-200">
-            <span class="material-symbols-outlined text-3xl">menu</span>
-        </button>
     </nav>
 
     <!-- Main Content Canvas -->
