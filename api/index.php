@@ -26,8 +26,8 @@ $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 $_SERVER['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 
 // Vercel serverless specific configs
-putenv('CACHE_DRIVER=array');
-$_ENV['CACHE_DRIVER'] = 'array';
+putenv('CACHE_STORE=file');
+$_ENV['CACHE_STORE'] = 'file';
 putenv('SESSION_DRIVER=cookie');
 $_ENV['SESSION_DRIVER'] = 'cookie';
 putenv('QUEUE_CONNECTION=sync');
@@ -45,4 +45,11 @@ $_ENV['APP_ROUTES_CACHE'] = '/tmp/bootstrap/cache/routes.php';
 putenv('APP_EVENTS_CACHE=/tmp/bootstrap/cache/events.php');
 $_ENV['APP_EVENTS_CACHE'] = '/tmp/bootstrap/cache/events.php';
 
-require __DIR__ . '/../public/index.php';
+// Bootstrap Laravel
+require __DIR__.'/../vendor/autoload.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+// Override storage path to Vercel's /tmp directory
+$app->useStoragePath('/tmp/storage');
+
+$app->handleRequest(Illuminate\Http\Request::capture());
