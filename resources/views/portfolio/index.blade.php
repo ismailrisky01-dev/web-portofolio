@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="flex-1 relative hidden lg:block">
-            <img alt="Portrait Ismail" class="absolute inset-0 w-full h-full object-cover" src="{{ asset('build/assets/fotoku.jpeg') }}"/>
+            <img alt="Portrait Ismail" class="absolute inset-0 w-full h-full object-cover" src="{{ asset('images/fotoku.jpeg') }}"/>
         </div>
     </section>
 
