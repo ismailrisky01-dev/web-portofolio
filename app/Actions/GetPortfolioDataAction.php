@@ -68,8 +68,8 @@ class GetPortfolioDataAction
             return $this->fallbackPhotos();
         }
 
-        // Cache selama 1 jam agar tidak boros API quota
-        $cacheKey = 'pexels_photos_' . ($collectionId ?: 'curated');
+        // Cache selama 1 jam agar tidak boros API quota. Key digabung dengan Collection ID agar cache reset saat ID berubah.
+        $cacheKey = 'pexels_photos_' . md5($collectionId . $apiKey);
 
         return Cache::remember($cacheKey, 3600, function () use ($apiKey, $collectionId) {
             try {
