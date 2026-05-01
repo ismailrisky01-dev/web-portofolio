@@ -45,7 +45,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Generate Laravel Key (for sqlite/testing) and run migrations
+# Generate Laravel Key and run migrations
+RUN cp .env.example .env
 RUN touch database/database.sqlite
 RUN php artisan key:generate
 RUN php artisan migrate --force
