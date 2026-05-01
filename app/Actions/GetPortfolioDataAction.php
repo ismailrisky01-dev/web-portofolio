@@ -28,6 +28,7 @@ class GetPortfolioDataAction
                 'tagline' => 'Crafting elegant code and capturing stunning moments.',
                 'about' => 'I am a passionate creative professional who bridges the gap between technology and art. As a programmer, I love building scalable web applications. As a photographer, I aim to freeze beautiful moments in time.',
                 'email' => 'ismailrisky01@gmail.com',
+                'whatsapp' => '6289679163424',
                 'location' => 'Indonesia',
             ],
             'skills' => [
