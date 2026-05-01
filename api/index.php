@@ -33,4 +33,16 @@ $_ENV['SESSION_DRIVER'] = 'cookie';
 putenv('QUEUE_CONNECTION=sync');
 $_ENV['QUEUE_CONNECTION'] = 'sync';
 
+// Bypass Vercel build cache that contains wrong absolute paths
+putenv('APP_SERVICES_CACHE=/tmp/bootstrap/cache/services.php');
+$_ENV['APP_SERVICES_CACHE'] = '/tmp/bootstrap/cache/services.php';
+putenv('APP_PACKAGES_CACHE=/tmp/bootstrap/cache/packages.php');
+$_ENV['APP_PACKAGES_CACHE'] = '/tmp/bootstrap/cache/packages.php';
+putenv('APP_CONFIG_CACHE=/tmp/bootstrap/cache/config.php');
+$_ENV['APP_CONFIG_CACHE'] = '/tmp/bootstrap/cache/config.php';
+putenv('APP_ROUTES_CACHE=/tmp/bootstrap/cache/routes.php');
+$_ENV['APP_ROUTES_CACHE'] = '/tmp/bootstrap/cache/routes.php';
+putenv('APP_EVENTS_CACHE=/tmp/bootstrap/cache/events.php');
+$_ENV['APP_EVENTS_CACHE'] = '/tmp/bootstrap/cache/events.php';
+
 require __DIR__ . '/../public/index.php';
