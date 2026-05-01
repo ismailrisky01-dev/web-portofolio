@@ -25,4 +25,12 @@ putenv('VIEW_COMPILED_PATH=/tmp/storage/framework/views');
 $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 $_SERVER['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 
+// Vercel serverless specific configs
+putenv('CACHE_DRIVER=array');
+$_ENV['CACHE_DRIVER'] = 'array';
+putenv('SESSION_DRIVER=cookie');
+$_ENV['SESSION_DRIVER'] = 'cookie';
+putenv('QUEUE_CONNECTION=sync');
+$_ENV['QUEUE_CONNECTION'] = 'sync';
+
 require __DIR__ . '/../public/index.php';
