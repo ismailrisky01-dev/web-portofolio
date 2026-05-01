@@ -36,12 +36,6 @@ class GetPortfolioDataAction
             ],
             'projects' => [
                 [
-                    'title' => 'Firefox Extension: Social Media Automation',
-                    'description' => 'Ekstensi browser yang mengotomatisasi pengisian komentar dan proses upload (video/reels/caption) di TikTok dan Instagram dengan manipulasi DOM tingkat lanjut.',
-                    'tags' => ['JavaScript', 'Browser Extension', 'DOM Manipulation'],
-                    'link' => 'https://github.com/ismailrisky01-dev',
-                ],
-                [
                     'title' => 'Laravel 11 Vibe Coding Portfolio',
                     'description' => 'Website portofolio dinamis yang dibangun dengan Laravel 11, Tailwind CSS, Livewire, dan integrasi langsung ke Pexels API untuk sinkronisasi galeri foto.',
                     'tags' => ['Laravel', 'Tailwind', 'Pexels API'],
